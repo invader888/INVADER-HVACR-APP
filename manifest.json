@@ -1,0 +1,9 @@
+{
+  "name": "INVADeR HVACR \u2013 V10",
+  "short_name": "INVADeR HVACR",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#050008",
+  "theme_color": "#050008",
+  "icons": []
+}

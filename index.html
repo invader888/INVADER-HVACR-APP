@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>INVADeR HVACR – V10</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050008">
+<link rel="manifest" href="manifest.json">
+<style>
+:root {
+  --bg:#050008;
+  --green:#65ff6a;
+  --purple:#b366ff;
+  --accent:#ff66cc;
+  --card:#140018;
+  --text:#e8ffe8;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#1a0020,#050008 55%);
+  font-family:Arial, sans-serif;
+  color:var(--text);
+}
+header{
+  padding:10px 8px 6px;
+  text-align:center;
+  background:linear-gradient(90deg,#150017,#260033);
+  border-bottom:2px solid #3c0f4f;
+}
+header h1{
+  margin:0;
+  font-size:17px;
+  color:var(--green);
+}
+header h2{
+  margin:3px 0 0;
+  font-size:11px;
+  color:var(--accent);
+}
+#mainMenu{
+  padding:10px 6px 4px;
+  text-align:center;
+}
+.menu-btn{
+  border:none;
+  border-radius:11px;
+  padding:12px;
+  margin:6px auto;
+  font-size:14px;
+  font-weight:bold;
+  display:block;
+  width:100%;
+  max-width:380px;
+  background:linear-gradient(135deg,#65ff6a,#b0ffde);
+  color:#120013;
+  box-shadow:0 0 10px #210032;
+}
+.menu-btn.secondary{
+  background:linear-gradient(135deg,#b366ff,#ffb3f2);
+}
+main{
+  padding:6px 6px 10px;
+}
+.section{display:none;}
+.section.active{display:block;}
+#coreSubjectBar{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin:8px 6px 4px;
+  flex-wrap:wrap;
+}
+.subj-btn{
+  border:none;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:11px;
+  background:#2a0035;
+  color:#f0d8ff;
+}
+.subj-btn.active{
+  background:var(--accent);
+  color:#120013;
+}
+.top-tabs{
+  text-align:center;
+  margin-bottom:8px;
+}
+.top-tabs button{
+  border:none;
+  border-radius:999px;
+  padding:6px 10px;
+  margin:0 3px 4px;
+  font-size:11px;
+  background:#2a0035;
+  color:#f0d8ff;
+}
+.top-tabs button.active{
+  background:var(--green);
+  color:#120013;
+}
+.card{
+  background:var(--card);
+  border-radius:10px;
+  padding:12px;
+  margin:8px auto;
+  max-width:480px;
+  box-shadow:0 0 10px #210032;
+  font-size:14px;
+}
+.card h3{
+  margin:0 0 6px;
+  font-size:14px;
+  color:var(--green);
+}
+.exam-buttons, .flash-buttons{
+  text-align:center;
+  margin-top:8px;
+}
+.exam-buttons button, .flash-buttons button{
+  border:none;
+  border-radius:8px;
+  padding:6px 9px;
+  margin:3px;
+  font-size:12px;
+  background:var(--green);
+  color:#120013;
+}
+.progress-wrap{
+  margin:4px auto 0;
+  max-width:360px;
+}
+.progress-label{
+  font-size:11px;
+  margin-bottom:2px;
+  text-align:center;
+}
+.progress-bar{
+  width:100%;
+  height:7px;
+  border-radius:999px;
+  background:#120012;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,var(--green),var(--accent));
+}
+.study-q{
+  background:var(--card);
+  border-radius:9px;
+  padding:8px;
+  margin:6px auto;
+  max-width:480px;
+  font-size:13px;
+}
+.study-q p{margin:0 0 4px;}
+.study-a{
+  font-size:12px;
+  color:#a8ffb0;
+  display:none;
+}
+.study-q button{
+  border:none;
+  border-radius:7px;
+  padding:3px 7px;
+  font-size:11px;
+  background:var(--accent);
+  color:#120013;
+}
+.flash-front{
+  font-size:15px;
+  margin-bottom:4px;
+}
+.flash-back{
+  font-size:13px;
+  color:#a8ffb0;
+  display:none;
+}
+footer{
+  text-align:center;
+  font-size:10px;
+  color:#888;
+  margin:10px 4px 8px;
+}
+.small-note{font-size:10px;color:#aaa;}
+</style>
+</head>
+<body>
+<header>
+  <h1>INVADeR HVACR STUDY APP</h1>
+  <h2>CORE • LEVEL 1 • LEVEL 2 • LEVEL 3</h2>
+</header>
+
+<section id="mainMenu" class="section active">
+  <button class="menu-btn" data-target="coreSection">CORE – Math / Rigging / Prints</button>
+  <button class="menu-btn secondary" data-target="lvl1Section">LEVEL 1 – Coming Soon</button>
+  <button class="menu-btn secondary" data-target="lvl2Section">LEVEL 2 – Coming Soon</button>
+  <button class="menu-btn secondary" data-target="lvl3Section">LEVEL 3 – Coming Soon</button>
+</section>
+
+<section id="coreSection" class="section">
+  <div style="text-align:center;margin-top:4px;">
+    <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+  </div>
+  <div id="coreSubjectBar">
+    <button class="subj-btn active" data-subject="math">Core Math</button>
+    <button class="subj-btn" data-subject="rigging">Core Rigging</button>
+    <button class="subj-btn" data-subject="prints">Core Prints / Blueprints</button>
+  </div>
+
+  <main>
+    <div class="top-tabs">
+      <button class="tab-btn active" data-tab="exam">Exam Mode</button>
+      <button class="tab-btn" data-tab="study">Study Mode</button>
+      <button class="tab-btn" data-tab="flash">Flashcards</button>
+    </div>
+
+    <section id="examSection" class="card">
+      <h3 id="examTitle">Core Math – Master Exam</h3>
+      <div class="progress-wrap">
+        <div class="progress-label" id="examProgressLabel"></div>
+        <div class="progress-bar"><div class="progress-fill" id="examProgressFill"></div></div>
+      </div>
+      <p id="examQuestionText" style="margin-top:8px;"></p>
+      <div class="exam-buttons">
+        <button id="btnPrevQ">Previous</button>
+        <button id="btnNextQ">Next</button>
+        <button id="btnShowKey">Show Answer Key</button>
+      </div>
+    </section>
+
+    <section id="studySection" class="card" style="display:none;">
+      <h3 id="studyTitle">Core Math – Study Q + A</h3>
+      <div id="studyList" data-built-math="0" data-built-rigging="0" data-built-prints="0"></div>
+    </section>
+
+    <section id="flashSection" class="card" style="display:none;">
+      <h3 id="flashTitle">Core Math – Flashcards</h3>
+      <div class="flash-front" id="flashFront"></div>
+      <div class="flash-back" id="flashBack"></div>
+      <div class="flash-buttons">
+        <button id="btnFlipFlash">Flip</button>
+        <button id="btnPrevFlash">Previous</button>
+        <button id="btnNextFlash">Next</button>
+      </div>
+    </section>
+  </main>
+</section>
+
+<section id="lvl1Section" class="section">
+  <div class="card">
+    <h3>LEVEL 1 – Placeholder</h3>
+    <p>This section is reserved for your HVACR Level 1 book exam banks, study Q&A, and flashcards. Once you give GIR the chapter/module content, this area will be wired exactly like the CORE section.</p>
+    <div style="text-align:center;margin-top:8px;">
+      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+    </div>
+  </div>
+</section>
+
+<section id="lvl2Section" class="section">
+  <div class="card">
+    <h3>LEVEL 2 – Placeholder</h3>
+    <p>This section will hold Level 2 questions, answers, and flashcards in the same structure when you're ready.</p>
+    <div style="text-align:center;margin-top:8px;">
+      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+    </div>
+  </div>
+</section>
+
+<section id="lvl3Section" class="section">
+  <div class="card">
+    <h3>LEVEL 3 – Placeholder</h3>
+    <p>Level 3 content (advanced HVACR topics, exam prep, and drills) will live here once you provide the material.</p>
+    <div style="text-align:center;margin-top:8px;">
+      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  INVADeR HVACR • CORE app ready for GitHub hosting. Level 1–3 hooks are wired for future content.
+  <div class="small-note">Exam, Study, and Flashcard modes pull ONLY from your defined book-based banks (no outside questions).</div>
+</footer>
+
+<script>
+const BANKS = {
+  math: {
+    name: "Core Math",
+    examTitle: "Core Math – Master Exam",
+    studyTitle: "Core Math – Study Q + A",
+    flashTitle: "Core Math – Flashcards",
+    questions: ["Reduce the fraction 42/56 to simplest form.", "Reduce the fraction 36/54 to simplest form.", "Reduce the fraction 16/64 to simplest form.", "Reduce the fraction 9/27 to simplest form.", "Reduce the fraction 14/49 to simplest form.", "Reduce the fraction 63/84 to simplest form.", "Reduce the fraction 25/100 to simplest form.", "Reduce the fraction 18/24 to simplest form.", "Reduce the fraction 10/50 to simplest form.", "Reduce the fraction 15/45 to simplest form.", "Reduce the fraction 21/28 to simplest form.", "Reduce the fraction 12/30 to simplest form.", "Reduce the fraction 6/18 to simplest form.", "Reduce the fraction 20/80 to simplest form.", "Reduce the fraction 27/81 to simplest form.", "Reduce the fraction 8/32 to simplest form.", "Reduce the fraction 30/40 to simplest form.", "Reduce the fraction 35/140 to simplest form.", "Reduce the fraction 50/100 to simplest form.", "Reduce the fraction 32/48 to simplest form.", "Reduce the fraction 45/60 to simplest form.", "Reduce the fraction 12/36 to simplest form.", "Reduce the fraction 28/112 to simplest form.", "Reduce the fraction 6/24 to simplest form.", "Reduce the fraction 18/27 to simplest form.", "Convert the decimal 0.875 to a fraction in simplest form.", "Convert the decimal 0.625 to a fraction in simplest form.", "Convert the decimal 0.25 to a fraction in simplest form.", "Convert the decimal 0.5 to a fraction in simplest form.", "Convert the decimal 0.375 to a fraction in simplest form.", "Convert the decimal 0.125 to a fraction in simplest form.", "Convert the fraction 3/8 to a decimal.", "Convert the fraction 7/16 to a decimal.", "Convert the fraction 5/16 to a decimal.", "Convert the fraction 1/16 to a decimal.", "Convert the fraction 3/4 to a decimal.", "Convert the fraction 5/6 to a decimal (round to 4 decimal places).", "Convert the fraction 2/5 to a decimal.", "Convert the fraction 7/8 to a decimal.", "Convert the fraction 9/20 to a decimal.", "What is the decimal equivalent of 1/16 inch?", "What is the decimal equivalent of 3/16 inch?", "What is the decimal equivalent of 5/16 inch?", "What is the decimal equivalent of 7/16 inch?", "What is the decimal equivalent of 9/16 inch?", "What is the decimal equivalent of 11/16 inch?", "What is the decimal equivalent of 13/16 inch?", "What is the decimal equivalent of 15/16 inch?", "What fraction is halfway between 1/4 inch and 1/2 inch on a tape?", "Which is larger: 5/8 inch or 9/16 inch?", "How many 1/16 inch increments are in 3/4 inch?", "What inch mark is 10/16 simplified?", "What inch mark is 12/16 simplified?", "What inch mark is 8/16 simplified?", "What inch mark is 6/16 simplified?", "What inch mark is 4/16 simplified?", "What inch mark is 14/16 simplified?", "What inch mark is 2/16 simplified?", "What mark comes immediately after 7/8 inch on a 1/16 tape?", "How many 1/8 inch increments are in 1 inch?", "Convert 5 ft 8 in to total inches.", "Convert 72 inches to feet.", "Convert 90 inches to feet and inches.", "Convert 48 inches to feet.", "Convert 3 ft 4 in to total inches.", "Convert 100 inches to feet and inches.", "Convert 132 inches to feet.", "Convert 1.25 ft to inches.", "Convert 2.5 ft to inches.", "Convert 7 ft to inches.", "Convert 8 ft 6 in to inches.", "Convert 10 ft to inches.", "Convert 6 ft 3 in to inches.", "Convert 96 inches to feet.", "Convert 15 inches to feet and inches.", "Convert 30 inches to feet and inches.", "Convert 18 inches to feet and inches.", "Convert 60 inches to feet.", "Convert 144 inches to feet.", "Convert 24 inches to feet.", "Find the area of a rectangular room that is 8 ft by 12 ft.", "Find the area of a platform that is 10 ft by 15 ft.", "Find the area of a slab that is 6 ft by 9 ft.", "Find the area of a rectangle that is 4 ft by 16 ft.", "Find the area of a square that is 12 ft by 12 ft.", "Find the volume of a box that is 2 ft by 3 ft by 4 ft.", "Find the volume of a box that is 1 ft by 2 ft by 10 ft.", "Find the volume of a cube that is 3 ft on each side.", "Find the volume of a box that is 4 ft by 4 ft by 2 ft.", "Find the volume of a box that is 6 ft by 2 ft by 2 ft.", "A line set is 15 ft long. How many inches is that?", "A duct run is 84 in long. How many feet is that?", "A tech trims off 3/4 in of insulation. How many 1/16 in increments is that?", "A pipe is 2.5 ft long. Convert this length to inches.", "A rooftop unit is 7 ft 6 in tall. Convert this height to inches.", "A chase is framed 16 ft long. How many inches is that?", "A sleeve is 10 in wide. Convert this width to feet (round to 3 decimals).", "A coil housing is 30 in tall. Convert this height to feet.", "A plenum is 5 ft tall. Convert this height to inches.", "Sheet metal length needed is 144 in. Convert this length to feet."],
+    answers: ["3/4", "2/3", "1/4", "1/3", "2/7", "3/4", "1/4", "3/4", "1/5", "1/3", "3/4", "2/5", "1/3", "1/4", "1/3", "1/4", "3/4", "1/4", "1/2", "2/3", "3/4", "1/3", "1/4", "1/4", "2/3", "7/8", "5/8", "1/4", "1/2", "3/8", "1/8", "0.375", "0.4375", "0.3125", "0.0625", "0.75", "0.8333", "0.4", "0.875", "0.45", "0.0625", "0.1875", "0.3125", "0.4375", "0.5625", "0.6875", "0.8125", "0.9375", "3/8", "5/8", "12", "5/8", "3/4", "1/2", "3/8", "1/4", "7/8", "1/8", "15/16", "8", "68 in", "6 ft", "7 ft 6 in", "4 ft", "40 in", "8 ft 4 in", "11 ft", "15 in", "30 in", "84 in", "102 in", "120 in", "75 in", "8 ft", "1 ft 3 in", "2 ft 6 in", "1 ft 6 in", "5 ft", "12 ft", "2 ft", "96 sq ft", "150 sq ft", "54 sq ft", "64 sq ft", "144 sq ft", "24 cu ft", "20 cu ft", "27 cu ft", "32 cu ft", "24 cu ft", "180 in", "7 ft", "12", "30 in", "90 in", "192 in", "0.833 ft", "2.5 ft", "60 in", "12 ft"]
+  },
+  rigging: {
+    name: "Core Rigging",
+    examTitle: "Core Rigging – Exam",
+    studyTitle: "Core Rigging – Study Q + A",
+    flashTitle: "Core Rigging – Flashcards",
+    questions: ["State the main purpose of rigging in construction and HVAC work.", "Explain what a sling is used for in rigging operations.", "Define 'working load limit' (WLL).", "Explain the difference between 'working load limit' and 'breaking strength'.", "State why you must never exceed the working load limit of rigging equipment.", "Define 'center of gravity' of a load.", "Explain why the center of gravity matters when lifting a load.", "Describe what happens if the hook is not directly above the load's center of gravity.", "Define 'shock loading' in rigging.", "Explain why sudden jerks on a load are dangerous when lifting.", "List two common types of slings used in HVAC/core rigging.", "Describe a vertical hitch.", "Describe a choker hitch.", "Describe a basket hitch.", "Explain how sling angle affects sling tension.", "State what happens to sling tension as the sling angle decreases from 90\u00b0 toward 30\u00b0.", "Explain why equal leg lengths are important on a two-leg bridle sling.", "Define 'tag line' and its purpose.", "Explain why you should never wrap a tag line around your hand or body.", "List two pieces of personal protective equipment (PPE) required for rigging work.", "State why inspecting rigging gear before each use is critical.", "List two signs of sling damage that require the sling to be removed from service.", "Explain why knots must not be tied in wire rope slings.", "Describe how to store synthetic web slings when not in use.", "Explain why rigging hardware (shackles, hooks, eyebolts) must be properly rated and marked.", "State what a shackle is used for.", "Describe the correct way to orient a screw pin shackle during a lift.", "Explain why side loading a shackle or hook is unsafe.", "Define 'load chart' in the context of cranes or lifting devices.", "Explain why only qualified personnel should signal and direct a crane or hoist.", "List three standard hand signals used to communicate with a crane or hoist operator.", "Explain why only one person should give signals to the crane operator.", "State why you must keep clear of the load's path during a lift.", "Explain the term 'pinch point' in rigging operations.", "State why you must never stand under a suspended load.", "Explain why tools, loose materials, and debris must be cleared from the lift path.", "Describe how weather conditions like high winds affect rigging and lifting operations.", "Explain why lifting near overhead power lines is especially hazardous.", "Explain why you must follow the manufacturer's instructions for all rigging gear.", "State the general steps to plan a safe rigging lift from pre-lift to setting the load."],
+    answers: ["To safely lift, move, and position loads using ropes, slings, hardware, and lifting devices.", "To attach a load to a hook, crane, or hoist so it can be lifted safely.", "The maximum load that rigging equipment is rated to carry when used correctly.", "Working load limit is the safe rated capacity; breaking strength is the load at which gear fails.", "Because exceeding WLL can cause equipment failure, dropped loads, injury, or death.", "The point at which the entire weight of a load is considered to be concentrated.", "It determines how the load will balance and whether it will lift level or tip.", "The load may swing, rotate, or tip unexpectedly, creating a dangerous situation.", "Applying a sudden, dynamic force or jerk to a rigging system or load.", "It can overload rigging instantly and cause failure, even if the static load is within limits.", "Wire rope slings and synthetic web slings (also acceptable: chain slings, round slings).", "A hitch where the sling is attached straight from the hook down to the load.", "A hitch where the sling passes around the load and back through itself to tighten.", "A hitch that supports the load in a loop underneath, with both ends on the hook.", "As the sling angle gets smaller, the tension in each sling leg increases.", "Sling tension increases significantly and can exceed the sling's working load limit.", "Unequal leg lengths create uneven loading and can overload one leg or unbalance the load.", "A line attached to a load to help control swing, rotation, and direction while lifting.", "It can tighten suddenly and trap or injure the worker if the load moves or drops.", "Hard hat and safety shoes/boots are minimum; gloves, eye protection, and others may also be required.", "To ensure there are no defects or damage that could cause failure during the lift.", "Broken wires, crushed or kinked strands, severe wear, cuts, chemical damage, or damaged tags.", "Knots reduce strength and damage the rope, making its capacity unknown and unsafe.", "Store them clean, dry, off the floor, away from sunlight, chemicals, or sharp edges.", "To ensure each device is used within its safe capacity and is identifiable for inspection.", "To connect slings to loads or connecting points with a removable pinned connection.", "With the pin in line with the line of pull and fully seated, not cross-loaded or loose.", "It can overload or distort the hardware and cause it to fail unexpectedly.", "A chart that shows the safe lifting capacities of a crane or lifting device at different configurations.", "Because they understand signals, hazards, and limitations of the equipment and can keep others safe.", "Signals such as 'hoist up', 'lower', 'stop', 'emergency stop', and 'boom up/boom down'.", "To avoid conflicting commands and ensure the operator always knows who to follow.", "So that if the load swings, drops, or shifts, no one is in the danger zone.", "Any point where a body part can be caught between moving parts, loads, or fixed objects.", "Because the load or rigging can fail or shift without warning and crush anyone below.", "They can interfere with the lift, catch on the load or rigging, and create trip or snag hazards.", "High winds can cause loads to swing, spin, or become unstable and may require delaying the lift.", "Because of the risk of electrical contact or arcing, which can be fatal.", "Because the manufacturer sets safe use limits, inspection criteria, and configurations.", "Plan the load weight and center of gravity, choose proper rigging, inspect gear, clear the area, rig the load, test lift, move slowly under control, and set and secure the load."]
+  },
+  prints: {
+    name: "Core Prints / Blueprints",
+    examTitle: "Core Prints – Exam",
+    studyTitle: "Core Prints – Study Q + A",
+    flashTitle: "Core Prints – Flashcards",
+    questions: ["Explain the main purpose of construction prints/blueprints in HVAC and core construction work.", "Define a 'plan view' on a drawing.", "Define an 'elevation view' on a drawing.", "Define a 'section view' on a drawing.", "Explain why multiple views (plan, elevation, section) are often needed.", "State what the drawing title block usually contains.", "Explain what the drawing scale tells you.", "Give an example of a common scale used on construction prints.", "Explain what 'not to scale' (NTS) means on a drawing.", "Define a 'legend' or 'symbol key' on a print.", "Explain why standard symbols are used on HVAC and construction drawings.", "State what a door symbol usually represents on a floor plan.", "State what a window symbol usually represents on a floor plan.", "Describe what a wall line typically looks like on a print.", "Explain what hidden lines (dashed lines) usually represent.", "Explain what centerlines (long-short-long) usually represent.", "Define a 'dimension line' on a drawing.", "Define an 'extension line' on a drawing.", "Explain where you typically find overall building dimensions on a print.", "Explain how to read a typical door size such as 3'-0\" x 7'-0\".", "Explain how to read a dimension like 1 1/2\" on a print.", "Explain the difference between inside and outside dimensions.", "Define a 'detail' drawing.", "Explain why a detail might be drawn at a larger scale than the floor plan.", "Define a 'schedule' on a print (such as a door schedule or diffuser schedule).", "Explain how a diffuser or register schedule helps the HVAC installer.", "Define a match line on a large drawing.", "Explain the purpose of grid lines (A, B, C and 1, 2, 3) on drawings.", "Explain what a north arrow symbol shows.", "Describe how to find a specific room or area on a set of prints using the title block and sheet numbers.", "Explain what revision clouds or revision notes indicate on a drawing.", "State why it is important to use the most current revision of a drawing.", "Explain what a section cut symbol (circle with arrows and numbers) tells you.", "Explain what a detail callout symbol (circle or bubble with number and sheet) tells you.", "Explain the meaning of 'scale: 1/4\" = 1'-0\"' on a floor plan.", "Explain how to convert a 10-foot wall length into inches when using a scaled drawing.", "Describe how an HVAC floor plan differs from an architectural floor plan.", "Explain what a riser diagram is used for in HVAC or piping work.", "Explain why print reading is essential before cutting, drilling, or installing duct or pipe.", "State the general steps to read and understand a new set of prints."],
+    answers: ["To communicate how the building, systems, and components should be built, located, and installed.", "A view looking straight down from above, like a floor plan or roof plan.", "A vertical view looking at the side or face of a building or component.", "A cut-through view that shows what the object looks like inside along a plane.", "Because no single view can show all dimensions, relationships, and internal details.", "Project name, sheet title, sheet number, scale, designer/engineer, date, and revision information.", "How drawing measurements on paper relate to the real-world size of the building or components.", "Examples: 1/4\" = 1'-0\", 1/8\" = 1'-0\", or 1\" = 10'-0\".", "That the drawing is not drawn to a specific scale and measurements must not be taken from it.", "A chart or box that explains the meaning of symbols, abbreviations, and line types used on the print.", "So everyone reads the drawing the same way and understands which components each symbol represents.", "The location and swing of a door in a wall opening.", "The location and type of a window opening in a wall.", "A continuous line indicating the location and thickness of a wall or partition.", "Hidden edges or components that are not directly visible in that view.", "The center of objects or paths of symmetry, such as the center of beams or fixtures.", "A line with arrowheads and a measurement value showing the distance between two points.", "A line that extends from the object to show where a dimension applies.", "Along the exterior or overall outline of the building, usually around the perimeter of the plan.", "A door that is 3 feet wide and 7 feet high.", "One and one-half inches.", "Inside dimensions measure clear space inside; outside dimensions measure the overall outside size.", "A small, more detailed drawing of a specific part or area of the project.", "To show small or complex features clearly enough for construction or installation.", "A table listing items like doors, windows, or diffusers with sizes, types, and other data.", "It tells which type, size, airflow, location, and sometimes elevation to install.", "An indication that the drawing continues on another sheet at the same location.", "To help locate elements by referencing intersections of letters and numbers, like a map grid.", "The orientation of the building relative to true or project north.", "By checking the sheet list, finding the correct drawing number, then locating the room on the plan using titles and grid lines.", "Changes or updates to the drawing since the previous version.", "To avoid building from outdated information, which can cause rework, conflicts, or failures.", "Where a cut is made on the plan and which direction you are looking in the section view, plus the sheet where the section is drawn.", "That a particular area or component is drawn more clearly on another sheet or at another location referencing that number.", "That every 1/4 inch on the drawing equals 1 foot in the actual building.", "Multiply 10 feet by 12 inches per foot to get 120 inches, then check it with the drawing scale if needed.", "The HVAC plan emphasizes ductwork, equipment, registers, and mechanical systems rather than walls, doors, and finishes.", "To show vertical piping or duct runs between floors and how systems connect from level to level.", "Because you must know exactly where and how systems are to be installed before modifying the structure or systems.", "Review the title block and scale, scan the overall plan, identify key symbols and legends, locate the area or system you are working on, review dimensions and notes, and then follow specific details, sections, and schedules as needed."]
+  }
+};
+
+let currentSubject = 'math';
+let currentIndex = 0;
+let currentFlashIndex = 0;
+
+const examTitleEl = document.getElementById('examTitle');
+const studyTitleEl = document.getElementById('studyTitle');
+const flashTitleEl = document.getElementById('flashTitle');
+const examQuestionText = document.getElementById('examQuestionText');
+const examProgressLabel = document.getElementById('examProgressLabel');
+const examProgressFill = document.getElementById('examProgressFill');
+const studyList = document.getElementById('studyList');
+const flashFront = document.getElementById('flashFront');
+const flashBack = document.getElementById('flashBack');
+
+function showSection(id) {
+  document.querySelectorAll('section.section').forEach(sec => sec.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+document.querySelectorAll('.menu-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-target');
+    if (target) showSection(target);
+  });
+});
+
+function loadExamQuestion() {
+  const bank = BANKS[currentSubject];
+  const qLen = bank.questions.length;
+  if (currentIndex < 0) currentIndex = 0;
+  if (currentIndex >= qLen) currentIndex = qLen - 1;
+  examTitleEl.textContent = bank.examTitle;
+  examQuestionText.textContent = (currentIndex + 1) + ". " + bank.questions[currentIndex];
+  examProgressLabel.textContent = "Question " + (currentIndex + 1) + " of " + qLen;
+  const pct = ((currentIndex + 1) / qLen) * 100;
+  examProgressFill.style.width = pct + "%";
+}
+
+function showAnswerKey() {
+  const bank = BANKS[currentSubject];
+  let out = "";
+  for (let i = 0; i < bank.questions.length; i++) {
+    out += (i+1) + ". " + bank.answers[i] + "\n";
+  }
+  alert(bank.name + " Answer Key:\n\n" + out);
+}
+
+function buildStudyList(subject) {
+  const bank = BANKS[subject];
+  studyList.innerHTML = "";
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < bank.questions.length; i++) {
+    const wrap = document.createElement('div');
+    wrap.className = 'study-q';
+    const qp = document.createElement('p');
+    qp.textContent = (i+1) + ". " + bank.questions[i];
+    const ap = document.createElement('p');
+    ap.textContent = "Answer: " + bank.answers[i];
+    ap.className = 'study-a';
+    const btn = document.createElement('button');
+    btn.textContent = "Show / Hide Answer";
+    btn.onclick = () => {
+      ap.style.display = (ap.style.display === 'none' || ap.style.display === '') ? 'block' : 'none';
+    };
+    wrap.appendChild(qp);
+    wrap.appendChild(btn);
+    wrap.appendChild(ap);
+    frag.appendChild(wrap);
+  }
+  studyList.appendChild(frag);
+}
+
+function loadFlashcard() {
+  const bank = BANKS[currentSubject];
+  const len = bank.questions.length;
+  if (currentFlashIndex < 0) currentFlashIndex = 0;
+  if (currentFlashIndex >= len) currentFlashIndex = len - 1;
+  flashTitleEl.textContent = bank.flashTitle;
+  flashFront.textContent = (currentFlashIndex+1) + ". " + bank.questions[currentFlashIndex];
+  flashBack.textContent = "Answer: " + bank.answers[currentFlashIndex];
+  flashBack.style.display = 'none';
+}
+
+document.getElementById('btnPrevQ').onclick = function() {
+  currentIndex--;
+  loadExamQuestion();
+};
+document.getElementById('btnNextQ').onclick = function() {
+  currentIndex++;
+  loadExamQuestion();
+};
+document.getElementById('btnShowKey').onclick = function() {
+  showAnswerKey();
+};
+
+document.getElementById('btnFlipFlash').onclick = function() {
+  flashBack.style.display = (flashBack.style.display === 'none' || flashBack.style.display === '') ? 'block' : 'none';
+};
+document.getElementById('btnPrevFlash').onclick = function() {
+  currentFlashIndex--;
+  if (currentFlashIndex < 0) currentFlashIndex = BANKS[currentSubject].questions.length - 1;
+  loadFlashcard();
+};
+document.getElementById('btnNextFlash').onclick = function() {
+  currentFlashIndex++;
+  if (currentFlashIndex >= BANKS[currentSubject].questions.length) currentFlashIndex = 0;
+  loadFlashcard();
+};
+
+// Tab switching
+const examSection = document.getElementById('examSection');
+const studySection = document.getElementById('studySection');
+const flashSection = document.getElementById('flashSection');
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    if (tab === 'exam') {
+      examSection.style.display = '';
+      studySection.style.display = 'none';
+      flashSection.style.display = 'none';
+    } else if (tab === 'study') {
+      examSection.style.display = 'none';
+      studySection.style.display = '';
+      flashSection.style.display = 'none';
+      buildStudyList(currentSubject);
+    } else if (tab === 'flash') {
+      examSection.style.display = 'none';
+      studySection.style.display = 'none';
+      flashSection.style.display = '';
+      loadFlashcard();
+    }
+  });
+});
+
+// Subject switching
+document.querySelectorAll('.subj-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.subj-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSubject = btn.dataset.subject;
+    currentIndex = 0;
+    currentFlashIndex = 0;
+    examTitleEl.textContent = BANKS[currentSubject].examTitle;
+    studyTitleEl.textContent = BANKS[currentSubject].studyTitle;
+    flashTitleEl.textContent = BANKS[currentSubject].flashTitle;
+    loadExamQuestion();
+    if (document.querySelector('.tab-btn.active').dataset.tab === 'study') {
+      buildStudyList(currentSubject);
+    } else if (document.querySelector('.tab-btn.active').dataset.tab === 'flash') {
+      loadFlashcard();
+    }
+  });
+});
+
+// initial
+showSection('mainMenu');
+loadExamQuestion();
+loadFlashcard();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').catch(function(e){console.log('SW reg failed', e);});
+  });
+}
+</script>
+</body>
+</html>
