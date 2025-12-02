@@ -1,7 +1,7 @@
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('invader-hvacr-core-v10').then(function(cache) {
+    caches.open('invader-hvacr-empire-v12').then(function(cache) {
       return cache.addAll([
         './',
         './index.html',

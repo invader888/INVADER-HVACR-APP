@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INVADeR HVACR – V10</title>
+<title>INVADeR HVACR – EMPIRE V12</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#050008">
 <link rel="manifest" href="manifest.json">
@@ -28,6 +27,7 @@ header{
   text-align:center;
   background:linear-gradient(90deg,#150017,#260033);
   border-bottom:2px solid #3c0f4f;
+  position:relative;
 }
 header h1{
   margin:0;
@@ -39,20 +39,55 @@ header h2{
   font-size:11px;
   color:var(--accent);
 }
+header .meta{
+  margin-top:4px;
+  font-size:10px;
+  color:#bbb;
+}
+#soundToggle{
+  border:none;
+  border-radius:999px;
+  padding:3px 8px;
+  font-size:10px;
+  background:#2a0035;
+  color:#f0d8ff;
+  position:absolute;
+  top:8px;
+  right:8px;
+}
+main{padding:6px 6px 10px;}
+.section{display:none;}
+.section.active{display:block;}
 #mainMenu{
-  padding:10px 6px 4px;
   text-align:center;
+}
+.menu-card{
+  background:var(--card);
+  border-radius:12px;
+  padding:10px;
+  margin:6px auto 10px;
+  max-width:420px;
+  box-shadow:0 0 12px #220033;
+  font-size:13px;
+}
+.menu-title{
+  font-size:14px;
+  color:var(--green);
+  margin-bottom:4px;
+}
+.menu-meta{
+  font-size:11px;
+  color:#b7ffda;
 }
 .menu-btn{
   border:none;
   border-radius:11px;
-  padding:12px;
-  margin:6px auto;
+  padding:11px;
+  margin:5px auto;
+  width:100%;
+  max-width:360px;
   font-size:14px;
   font-weight:bold;
-  display:block;
-  width:100%;
-  max-width:380px;
   background:linear-gradient(135deg,#65ff6a,#b0ffde);
   color:#120013;
   box-shadow:0 0 10px #210032;
@@ -60,11 +95,11 @@ header h2{
 .menu-btn.secondary{
   background:linear-gradient(135deg,#b366ff,#ffb3f2);
 }
-main{
-  padding:6px 6px 10px;
+.menu-btn span.small{
+  display:block;
+  font-size:11px;
+  font-weight:normal;
 }
-.section{display:none;}
-.section.active{display:block;}
 #coreSubjectBar{
   display:flex;
   justify-content:center;
@@ -187,32 +222,126 @@ footer{
   margin:10px 4px 8px;
 }
 .small-note{font-size:10px;color:#aaa;}
+
+/* Launcher overlay */
+#launcherOverlay{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#2a0035,#050008 70%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  color:var(--text);
+  text-align:center;
+}
+.launch-main{
+  font-size:22px;
+  letter-spacing:2px;
+  color:var(--green);
+  text-shadow:0 0 8px #65ff6a;
+  animation:pulse 1.6s infinite alternate;
+}
+.launch-sub{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--accent);
+}
+.launch-gir{
+  margin-top:10px;
+  font-size:28px;
+  animation:float 2.4s infinite ease-in-out;
+}
+.launch-tagline{
+  margin-top:8px;
+  font-size:11px;
+  color:#b7ffda;
+  padding:0 12px;
+}
+.launch-loading{
+  margin-top:10px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+.launch-loading span{
+  display:inline-block;
+  animation:blink 1.2s infinite;
+}
+.launch-hint{
+  margin-top:12px;
+  font-size:9px;
+  color:#777;
+}
+@keyframes pulse{
+  from{transform:scale(1);opacity:0.9;}
+  to{transform:scale(1.06);opacity:1;}
+}
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-6px);}
+  100%{transform:translateY(0);}
+}
+@keyframes blink{
+  0%{opacity:0.2;}
+  50%{opacity:1;}
+  100%{opacity:0.2;}
+}
+.hidden{display:none !important;}
 </style>
 </head>
 <body>
 <header>
-  <h1>INVADeR HVACR STUDY APP</h1>
+  <h1>HVACR STUDY APP</h1>
   <h2>CORE • LEVEL 1 • LEVEL 2 • LEVEL 3</h2>
+  <div class="meta">POWERED by INVADeR GiR 🛸👁️‍🗨️ • EMPIRE V12 for KING GRUICI</div>
+  <button id="soundToggle">Sound: ON</button>
 </header>
 
-<section id="mainMenu" class="section active">
-  <button class="menu-btn" data-target="coreSection">CORE – Math / Rigging / Prints</button>
-  <button class="menu-btn secondary" data-target="lvl1Section">LEVEL 1 – Coming Soon</button>
-  <button class="menu-btn secondary" data-target="lvl2Section">LEVEL 2 – Coming Soon</button>
-  <button class="menu-btn secondary" data-target="lvl3Section">LEVEL 3 – Coming Soon</button>
-</section>
+<div id="launcherOverlay">
+  <div class="launch-main">HVACR STUDY APP</div>
+  <div class="launch-sub">LOADING INVADeR SYSTEMs…</div>
+  <div class="launch-gir">🤖🛸</div>
+  <div class="launch-tagline" id="launchTagline"></div>
+  <div class="launch-loading">INITIALIZING<span>.</span><span>.</span><span>.</span></div>
+  <div class="launch-hint">Tap anywhere to deploy dashboard</div>
+</div>
 
-<section id="coreSection" class="section">
-  <div style="text-align:center;margin-top:4px;">
-    <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
-  </div>
-  <div id="coreSubjectBar">
-    <button class="subj-btn active" data-subject="math">Core Math</button>
-    <button class="subj-btn" data-subject="rigging">Core Rigging</button>
-    <button class="subj-btn" data-subject="prints">Core Prints / Blueprints</button>
-  </div>
+<main>
+  <section id="mainMenu" class="section active">
+    <div class="menu-card">
+      <div class="menu-title">Empire Dashboard</div>
+      <div class="menu-meta" id="xpDisplay">XP: 0 • Rank: Apprentice</div>
+      <div class="small-note">XP increases as you move through questions and flip flashcards.</div>
+    </div>
+    <button class="menu-btn" data-target="coreSection">
+      CORE – Math / Rigging / Prints
+      <span class="small">Master the basics before advancing to Level 1–3.</span>
+    </button>
+    <button class="menu-btn secondary" data-target="lvl1Section">
+      LEVEL 1 – Framework Ready
+      <span class="small">Book-based modules from your Level 1 text will plug in here.</span>
+    </button>
+    <button class="menu-btn secondary" data-target="lvl2Section">
+      LEVEL 2 – Framework Ready
+      <span class="small">Advanced troubleshooting, systems, and performance.</span>
+    </button>
+    <button class="menu-btn secondary" data-target="lvl3Section">
+      LEVEL 3 – Framework Ready
+      <span class="small">Empire-tier mastery reserved for KING GRUICI.</span>
+    </button>
+  </section>
 
-  <main>
+  <section id="coreSection" class="section">
+    <div style="text-align:center;margin-top:4px;">
+      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Dashboard</button>
+    </div>
+    <div id="coreSubjectBar">
+      <button class="subj-btn active" data-subject="math">Core Math</button>
+      <button class="subj-btn" data-subject="rigging">Core Rigging</button>
+      <button class="subj-btn" data-subject="prints">Core Prints / Blueprints</button>
+    </div>
+
     <div class="top-tabs">
       <button class="tab-btn active" data-tab="exam">Exam Mode</button>
       <button class="tab-btn" data-tab="study">Study Mode</button>
@@ -235,7 +364,7 @@ footer{
 
     <section id="studySection" class="card" style="display:none;">
       <h3 id="studyTitle">Core Math – Study Q + A</h3>
-      <div id="studyList" data-built-math="0" data-built-rigging="0" data-built-prints="0"></div>
+      <div id="studyList"></div>
     </section>
 
     <section id="flashSection" class="card" style="display:none;">
@@ -248,42 +377,41 @@ footer{
         <button id="btnNextFlash">Next</button>
       </div>
     </section>
-  </main>
-</section>
+  </section>
 
-<section id="lvl1Section" class="section">
-  <div class="card">
-    <h3>LEVEL 1 – Placeholder</h3>
-    <p>This section is reserved for your HVACR Level 1 book exam banks, study Q&A, and flashcards. Once you give GIR the chapter/module content, this area will be wired exactly like the CORE section.</p>
-    <div style="text-align:center;margin-top:8px;">
-      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+  <section id="lvl1Section" class="section">
+    <div class="card">
+      <h3>LEVEL 1 – Framework Online</h3>
+      <p>This area will mirror CORE once you provide Level 1 HVACR modules. Exams, study Q&A, and flashcards will live here.</p>
+      <div style="text-align:center;margin-top:8px;">
+        <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Dashboard</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="lvl2Section" class="section">
-  <div class="card">
-    <h3>LEVEL 2 – Placeholder</h3>
-    <p>This section will hold Level 2 questions, answers, and flashcards in the same structure when you're ready.</p>
-    <div style="text-align:center;margin-top:8px;">
-      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+  <section id="lvl2Section" class="section">
+    <div class="card">
+      <h3>LEVEL 2 – Framework Online</h3>
+      <p>Reserved for Level 2: advanced systems, diagnostics, and performance tuning once content is supplied.</p>
+      <div style="text-align:center;margin-top:8px;">
+        <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Dashboard</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="lvl3Section" class="section">
-  <div class="card">
-    <h3>LEVEL 3 – Placeholder</h3>
-    <p>Level 3 content (advanced HVACR topics, exam prep, and drills) will live here once you provide the material.</p>
-    <div style="text-align:center;margin-top:8px;">
-      <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Main Menu</button>
+  <section id="lvl3Section" class="section">
+    <div class="card">
+      <h3>LEVEL 3 – Framework Online</h3>
+      <p>High-level Empire material will be wired here when KING GRUICI commands Level 3 content.</p>
+      <div style="text-align:center;margin-top:8px;">
+        <button class="menu-btn" style="max-width:220px;padding:7px;font-size:12px;" data-target="mainMenu">⬅ Back to Dashboard</button>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
 <footer>
-  INVADeR HVACR • CORE app ready for GitHub hosting. Level 1–3 hooks are wired for future content.
-  <div class="small-note">Exam, Study, and Flashcard modes pull ONLY from your defined book-based banks (no outside questions).</div>
+  INVADeR HVACR EMPIRE V12 • Core questions stay 100% book-aligned for KING GRUICI.
 </footer>
 
 <script>
@@ -317,6 +445,8 @@ const BANKS = {
 let currentSubject = 'math';
 let currentIndex = 0;
 let currentFlashIndex = 0;
+let soundOn = true;
+let xp = 0;
 
 const examTitleEl = document.getElementById('examTitle');
 const studyTitleEl = document.getElementById('studyTitle');
@@ -327,16 +457,49 @@ const examProgressFill = document.getElementById('examProgressFill');
 const studyList = document.getElementById('studyList');
 const flashFront = document.getElementById('flashFront');
 const flashBack = document.getElementById('flashBack');
+const xpDisplay = document.getElementById('xpDisplay');
+const soundToggle = document.getElementById('soundToggle');
+
+let audioCtx = null;
+function playBeep(freq=880, duration=0.08) {
+  if (!soundOn) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch(e) { console.log(e); }
+}
+
+function addXP(amount) {
+  xp += amount;
+  let rank = 'Apprentice';
+  if (xp >= 200) rank = 'Overlord';
+  else if (xp >= 120) rank = 'Master Tech';
+  else if (xp >= 60) rank = 'Journeyman';
+  xpDisplay.textContent = "XP: " + xp + " • Rank: " + rank;
+}
 
 function showSection(id) {
-  document.querySelectorAll('section.section').forEach(sec => sec.classList.remove('active'));
+  document.querySelectorAll('main .section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
 document.querySelectorAll('.menu-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.getAttribute('data-target');
-    if (target) showSection(target);
+    if (target) {
+      showSection(target);
+      playBeep(660,0.07);
+      addXP(1);
+    }
   });
 });
 
@@ -377,6 +540,8 @@ function buildStudyList(subject) {
     btn.textContent = "Show / Hide Answer";
     btn.onclick = () => {
       ap.style.display = (ap.style.display === 'none' || ap.style.display === '') ? 'block' : 'none';
+      playBeep(520,0.06);
+      addXP(1);
     };
     wrap.appendChild(qp);
     wrap.appendChild(btn);
@@ -400,27 +565,36 @@ function loadFlashcard() {
 document.getElementById('btnPrevQ').onclick = function() {
   currentIndex--;
   loadExamQuestion();
+  playBeep(500,0.05);
 };
 document.getElementById('btnNextQ').onclick = function() {
   currentIndex++;
   loadExamQuestion();
+  playBeep(720,0.05);
+  addXP(1);
 };
 document.getElementById('btnShowKey').onclick = function() {
   showAnswerKey();
+  playBeep(900,0.08);
 };
 
 document.getElementById('btnFlipFlash').onclick = function() {
   flashBack.style.display = (flashBack.style.display === 'none' || flashBack.style.display === '') ? 'block' : 'none';
+  playBeep(840,0.06);
+  addXP(1);
 };
 document.getElementById('btnPrevFlash').onclick = function() {
   currentFlashIndex--;
   if (currentFlashIndex < 0) currentFlashIndex = BANKS[currentSubject].questions.length - 1;
   loadFlashcard();
+  playBeep(500,0.05);
 };
 document.getElementById('btnNextFlash').onclick = function() {
   currentFlashIndex++;
   if (currentFlashIndex >= BANKS[currentSubject].questions.length) currentFlashIndex = 0;
   loadFlashcard();
+  playBeep(720,0.05);
+  addXP(1);
 };
 
 // Tab switching
@@ -448,6 +622,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       flashSection.style.display = '';
       loadFlashcard();
     }
+    playBeep(640,0.05);
   });
 });
 
@@ -459,19 +634,48 @@ document.querySelectorAll('.subj-btn').forEach(btn => {
     currentSubject = btn.dataset.subject;
     currentIndex = 0;
     currentFlashIndex = 0;
-    examTitleEl.textContent = BANKS[currentSubject].examTitle;
-    studyTitleEl.textContent = BANKS[currentSubject].studyTitle;
-    flashTitleEl.textContent = BANKS[currentSubject].flashTitle;
+    const bank = BANKS[currentSubject];
+    examTitleEl.textContent = bank.examTitle;
+    studyTitleEl.textContent = bank.studyTitle;
+    flashTitleEl.textContent = bank.flashTitle;
     loadExamQuestion();
-    if (document.querySelector('.tab-btn.active').dataset.tab === 'study') {
+    const activeTab = document.querySelector('.tab-btn.active').dataset.tab;
+    if (activeTab === 'study') {
       buildStudyList(currentSubject);
-    } else if (document.querySelector('.tab-btn.active').dataset.tab === 'flash') {
+    } else if (activeTab === 'flash') {
       loadFlashcard();
     }
+    playBeep(760,0.05);
+    addXP(2);
   });
 });
 
-// initial
+// Launcher overlay
+const overlay = document.getElementById('launcherOverlay');
+const launchTagline = document.getElementById('launchTagline');
+const taglines = [
+  "Invader GiR online. Calculating victory routes for KING GRUICI…",
+  "Empire protocol: Learn. Pass. Dominate the trade.",
+  "Core math engaged. Rigging and prints standing by.",
+  "Remember: Safety + math + prints = unstoppable tech.",
+  "Study quietly. Conquer loudly.",
+  "Every question answered is XP for the Empire."
+];
+launchTagline.textContent = taglines[Math.floor(Math.random()*taglines.length)];
+function hideOverlay() {
+  overlay.classList.add('hidden');
+}
+overlay.addEventListener('click', function(){ hideOverlay(); playBeep(900,0.08); });
+window.addEventListener('load', function(){ setTimeout(hideOverlay, 2600); });
+
+// Sound toggle
+soundToggle.addEventListener('click', function() {
+  soundOn = !soundOn;
+  soundToggle.textContent = 'Sound: ' + (soundOn ? 'ON' : 'OFF');
+  if (soundOn) playBeep(880,0.08);
+});
+
+// Initial
 showSection('mainMenu');
 loadExamQuestion();
 loadFlashcard();
